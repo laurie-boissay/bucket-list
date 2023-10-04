@@ -1,0 +1,39 @@
+body{
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+header{
+    background-color: darkcyan;
+    margin: auto;
+    padding: 10px;
+}
+
+main{
+    min-height: 90vh;
+    margin: auto;
+    padding: 10px;
+}
+
+footer{
+    background-color: cadetblue;
+    min-height: 10vh;
+    text-align: center;
+    display: flex;
+    justify-content: center; /* Centrer horizontalement */
+    align-items: center; /* Centrer verticalement */
+
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.container {
+    min-height: 100vh; /* 100% de la hauteur de la fenêtre visible */
+    background-color: antiquewhite;
+    max-width: 1000px;
+    margin: auto;
+    padding: 0;
+}
+
