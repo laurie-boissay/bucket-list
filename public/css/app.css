@@ -1,14 +1,18 @@
 body{
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 90vh;
     font-family: 'Roboto Condensed', sans-serif;
 }
 
 header{
     background-color: darkcyan;
-    margin: auto;
-    padding: 10px;
+    padding: 1rem 0;
 }
 
 main{
+    flex: 1;
     min-height: 90vh;
     margin: auto;
     padding: 10px;
@@ -29,11 +33,60 @@ a {
     text-decoration: none;
 }
 
-.container {
-    min-height: 100vh; /* 100% de la hauteur de la fenêtre visible */
-    background-color: antiquewhite;
-    max-width: 1000px;
-    margin: auto;
-    padding: 0;
+header h1 {
+    margin: 0 0 10px 0;
 }
 
+header a {
+    text-decoration: none;
+    color: inherit;
+}
+
+main h2 {
+    margin-top: 0;
+}
+
+.header-logo {
+    font-size: 3rem;
+    font-weight: normal;
+}
+
+.container {
+    background-color: antiquewhite;
+    max-width: 800px;
+    margin: auto;
+    min-width: 90vh;
+}
+
+.header-nav {
+    display: flex;
+}
+
+.header-logo img {
+    max-width: 42px;
+    margin-right: 5px;
+}
+
+.header-nav a {
+    margin-right: 2rem;
+}
+
+header nav a:hover {
+    text-decoration: underline;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+    margin: auto;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 10px; /* Ajoute une marge entre les éléments li si nécessaire */
+}
+
+nav ul li:last-child {
+    margin-right: 0; /* Supprime la marge du dernier élément li pour éviter un espace indésirable */
+}
