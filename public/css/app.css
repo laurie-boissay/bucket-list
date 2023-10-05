@@ -87,6 +87,17 @@ nav ul li {
     margin-right: 10px; /* Ajoute une marge entre les éléments li si nécessaire */
 }
 
+.wishes-list {
+    display: block;
+}
+
+.wishes-list p
+{
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
 nav ul li:last-child {
     margin-right: 0; /* Supprime la marge du dernier élément li pour éviter un espace indésirable */
 }

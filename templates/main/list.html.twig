@@ -4,6 +4,14 @@
 
 {% block body %}
     <h2>All whishes :</h2>
+    <section class="wishes-list">
+        {% for wish in wishes %}
+            <p>
+                {{ wish.title }} idée suggérée par {{ wish.author }}.
+                <a href="{{ path('wish_detail', {'id':wish.id}) }}" title="View wish details">voir +</a>
+            </p>
+        {% endfor %}
+    </section>
 {% endblock %}
 
 

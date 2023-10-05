@@ -3,28 +3,39 @@
 namespace App\Controller;
 
 
-use http\Client\Request;
+use App\Repository\WishRepository;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/wishes", name="whish_")
+ * @Route("/wishes", name="wish_")
  */
 class WishController extends AbstractController
 {
     /**
      * @Route("/list", name="list")
      */
-    function list(){
-        //afficher a liste des choses à faire une fois dans sa vie.
-        return $this-> render('main/list.html.twig');
+    function list(WishRepository $wishRepository): Response
+    {
+        // Récupère la liste des choses à faire à partir du wishRepository.
+        $wishes = $wishRepository->findAllIdeas();
+        dump($wishes);
+
+        return $this-> render('main/list.html.twig', [
+        "wishes" => $wishes]);
     }
 
     /**
      * @Route("/detail{id}", name="detail", requirements={"id"="\d+"})
      */
-    function detail(int $id):Request
+    public function detail(int $id, WishRepository $wishRepository): Response
     {
-        return $this-> render('main/detail.html.twig');
+        $wish = $wishRepository->find($id);
+        return $this->render(
+            'main/detail.html.twig',
+            ["wish" => $wish]
+        );
     }
 }
