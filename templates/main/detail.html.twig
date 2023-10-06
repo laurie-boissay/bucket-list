@@ -4,6 +4,8 @@
 
 {% block body %}
     <h2>{{ wish.title }}</h2>
-    <p>{{ wish.description }}</p>
+
+    {# le filtre nl2br convertie les sauts de ligne du texte en balises <br> #}
+    <p>{{ wish.description|nl2br }}</p>
     <p>Idée suggérée par : {{ wish.author }} le {{ wish.dateCreated|date('Y-m-d H:i:s') }}.</p>
 {% endblock %}
