@@ -15,18 +15,20 @@ class Wish
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::TEXT)]
+    #[ORM\Column(length: 255)]
     #[Assert\NotBlank]
     #[Assert\Length(min: 10, max: 255)]
     private ?string $title = null;
 
-    #[ORM\Column(type: Types::TEXT)]
-    #[Assert\NotBlank]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     #[Assert\Length(min: 10, max: 1000)]
     private ?string $description = null;
 
     #[ORM\Column(length: 50)]
     #[Assert\Length(max: 50)]
+    #[Assert\Assert\Regex(
+        pattern:"/^[a-z0-9_-]+$/i",
+        message:"Utilisez seulement des lettres, des nombres, des underscores et des tirets.")]
     private ?string $author = null;
 
     #[ORM\Column]

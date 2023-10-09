@@ -24,6 +24,16 @@
                     Bucket-List</h1>
                 {% include('main/inc/nav.html.twig') %}
             </header>
+
+            {# Read and display all flash messages #}
+            {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="flash flash-{{ label }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+
             <main>
                 {% block body %}{% endblock %}
             </main>
