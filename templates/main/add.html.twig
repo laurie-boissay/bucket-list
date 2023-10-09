@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme wishForm "bootstrap_3_horizontal_layout.html.twig" %}
+
+{% block title %}{{ parent() }} | Add an idea {% endblock %}
+
+{% block body %}
+    <h2>Add an idea</h2>
+    <div>
+        {{ form_start(wishForm) }}
+        {{ form_widget(wishForm) }}
+        <button type="submit" class="btn btn-outline-info">Ajouter</button>
+        {{ form_end(wishForm) }}
+    </div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
