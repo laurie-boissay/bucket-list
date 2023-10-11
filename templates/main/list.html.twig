@@ -6,11 +6,14 @@
     <h2>All whishes :</h2>
     <section class="wishes-list">
         {% for wish in wishes %}
-            <p>
-                <a href="{{ path('wish_detail', {'id':wish.id}) }}" title="View wish details">
+
+            <article>
+                [{{ wish.category.name }}]
+                <a href="{{ path('wish_detail', {'id':wish.id}) }}" title="View wish in details">
                     {{ wish.title }} idée suggérée par {{ wish.author }}.
                 </a>
-            </p>
+            </article>
+
         {% endfor %}
     </section>
 {% endblock %}

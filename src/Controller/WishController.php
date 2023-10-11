@@ -20,14 +20,16 @@ class WishController extends AbstractController
     /**
      * @Route("/list", name="list")
      */
-    function list(WishRepository $wishRepository): Response
+    public function list(WishRepository $wishRepository): Response
     {
-        // Récupère la liste des choses à faire à partir du wishRepository.
-        //$wishes = $wishRepository->findAllIdeas();
-        $wishes = $wishRepository->findBy(['isPublished' => true], ['dateCreated' => 'DESC']);
-
-        return $this-> render('main/list.html.twig', [
-        "wishes" => $wishes]);
+        // récupère les Wish publiés, du plus récent au plus ancien
+        // $wishes = $wishRepository->findBy(['isPublished' => true], ['dateCreated' => 'DESC']);
+        // on appelle une méthode personnalisée ici pour éviter d'avoir trop de requêtes.
+        $wishes = $wishRepository->findPublishedWishesWithCategories();
+        return $this->render('main/list.html.twig', [
+            // les passe à Twig
+            "wishes" => $wishes
+        ]);
     }
 
     /**

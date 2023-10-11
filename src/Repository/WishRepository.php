@@ -30,22 +30,21 @@ class WishRepository extends ServiceEntityRepository
      *
      * @return Wish[] An array of Wish objects representing the ideas.
      */
-    public function findAllIdeas()
+    public function findPublishedWishesWithCategories(): ?array
     {
-        // Create a QueryBuilder to build the query.
+        // on crée un query builder et on donne l'alias de w à Wish
         $queryBuilder = $this->createQueryBuilder('w');
-
-        // Add conditions to select the last ideas.
-        $queryBuilder->select('w');
-        $queryBuilder->addOrderBy('w.dateCreated', 'DESC');
-
-        // Create the query from the QueryBuilder.
+        // on ajoute la jointure avec catégorie, pour éviter les multiples requêtes
+        // on oublie PAS de sélectionner les données !
+        $queryBuilder->join('w.category', 'c')
+            ->addSelect('c');
+        // clause where...
+        $queryBuilder->andWhere('w.isPublished = 1');
+        // order by...
+        $queryBuilder->orderBy('w.dateCreated', 'DESC');
+        // récupère l'objet query de doctrine
         $query = $queryBuilder->getQuery();
-
-        // Execute the query and return the results.
-        $results = $query->getResult();
-        dump($results); // DEBUG
-
-        return $results;
+        // retourne le résultat de la requête
+        return $query->getResult();
     }
 }

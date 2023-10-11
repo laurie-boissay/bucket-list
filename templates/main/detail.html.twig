@@ -3,7 +3,7 @@
 {% block title %}{{ parent() }} | {{ wish.title }}{% endblock %}
 
 {% block body %}
-    <h2>{{ wish.title }}</h2>
+    <h2>{{ wish.title }} [{{ wish.category.name }}]</h2>
     {# le filtre nl2br convertit les sauts de ligne du texte en balises <br> #}
     <p>{{ wish.description|nl2br }}</p>
     <p>Idée suggérée par : {{ wish.author }} le {{ wish.dateCreated|date('d/m/Y H:i') }}.</p>
