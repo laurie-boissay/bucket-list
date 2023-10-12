@@ -53,6 +53,10 @@ class WishController extends AbstractController
         $wish = new Wish();
         $wish->setIsPublished(true); // Ce champ ne dois pas être modifié par l'utilisateur.
 
+        // Préremplir le champ pseudo
+        $currentUserUsername = $this->getUser()->getUserIdentifier();
+        $wish->setAuthor($currentUserUsername);
+
         // Crée un formulaire basé sur le type "WhishType" et associe l'instance du wish.
         $wishForm = $this->createForm(WishType::class, $wish);
         // À ce stade, le formulaire a été créé, mais il reste à le traiter.
