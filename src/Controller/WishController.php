@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Wish;
 use App\Form\WishType;
 use App\Repository\WishRepository;
+use App\service\Censurator;
 use Doctrine\ORM\EntityManagerInterface;
 use phpDocumentor\Reflection\Types\String_;
 use Symfony\Component\HttpFoundation\Request;
@@ -47,7 +48,11 @@ class WishController extends AbstractController
     /**
      * @Route("/add", name="add")
      */
-    public function add(Request $request, EntityManagerInterface $entityManager): Response
+    public function add(
+        Request $request,
+        EntityManagerInterface $entityManager,
+        Censurator $censurator
+    ): Response
     {
         // Crée une nouvelle instance de l'entité "Wish".
         $wish = new Wish();
@@ -67,6 +72,9 @@ class WishController extends AbstractController
         // isValid est important pour la sécurité il empêche les attaques CSRF.
         if ($wishForm->isSubmitted() && $wishForm->isValid()){
             $wish->setDateCreated(new \DateTime()); // Ce champ ne dois pas être modifié par l'utilisateur.
+            // Utilisation du service de censure.
+            $wish->setTitle($censurator->purify($wish->getTitle()));
+            $wish->setDescription($censurator->purify($wish->getDescription()));
             // Sauvegarde en BdD
             $entityManager->persist($wish);
             // Confirmation
